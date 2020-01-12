@@ -1,0 +1,82 @@
+.b-auth {
+    max-width: 400px;
+    background: $blue-bg;
+    border-radius: 10px;
+    margin: 50px 0;
+    &__inner {
+        padding: 40px;
+        h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: $base-white;
+        }
+    }
+}
+.b-form {
+    min-width: 300px;
+    &__row {
+        margin: 20px 0;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &_flex-jb {
+            display: flex;
+            justify-content: space-between;
+        }
+        .b-button {
+            min-width: 122px;
+            margin: 10px 0;
+            &:hover {
+                color: $blue-bg 
+            }
+        }
+        a {
+            color: $base-white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+    &__field {
+        color: $base-white;
+    }
+    .MuiFormLabel-root,
+    .MuiFormLabel-root.Mui-focused,
+    .MuiInputBase-root {
+        color: $base-white;
+    }
+    .MuiOutlinedInput-notchedOutline,
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+    .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+        border-color: $border-white;
+    }
+    .b-checkbox {
+        display: none;
+        &:checked~.b-label:before {
+            content: "✔";
+        }
+    }
+    .b-label {
+        color: $base-white;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        &:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid $base-white;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1px 5px;
+            font-size: 14px;
+        }
+    }
+}

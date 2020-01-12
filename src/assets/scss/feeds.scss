@@ -1,0 +1,15 @@
+.b-feeds {
+    margin: 20px 0;
+}
+.b-feed {
+    padding: 35px 0 15px;
+    border-bottom: 1px solid $grey;
+    &:last-child {
+        border-bottom: none;
+    }
+    &__author {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+}

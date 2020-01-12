@@ -1,0 +1,125 @@
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $base-white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.b-root__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+}
+.b-inner {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+.b-app {
+  flex-grow: 1;
+  height: calc(100% - 60px);
+  position: relative;
+  overflow-y: auto;
+}
+.b-footer {
+  background: $footer-bg;
+  height: 60px;
+  color: $base-white;
+  .b-inner {
+    height: 100%;
+    display: flex;  
+  }
+  &__list {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  a {
+    font-weight: bold;
+    color: $base-white;
+    text-decoration: none;
+  }
+}
+.b-logo {
+  width: 100px;
+}
+
+.b-center {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.b-form {
+  .b-button {
+    background-color: $base-white;
+    &:hover {
+      background-color: $base-white;
+    }
+    span {
+      text-transform: none;
+    }
+  }
+  .b-mr20 {
+    margin-right: 20px;
+  }
+}
+
+.scrollbar-container {
+  //height: 100%;
+}
+
+a {
+  color: $blue-bg;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.5 ease;
+  &:hover {
+    opacity: 0.8
+  }
+}
+.b-main {
+  padding-top: 60px;
+}
+.b-header {
+  background: $blue-bg;
+  color: $base-white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  .b-inner {
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  ul {
+    list-style-type: none;
+    li {
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
+  a {
+    color: $base-white
+  }
+}
