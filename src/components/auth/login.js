@@ -1,6 +1,6 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 
 export default class Login extends React.Component {
@@ -10,7 +10,7 @@ export default class Login extends React.Component {
                 <div className="b-auth">
                     <div className="b-auth__inner">
                         <h2>Вход</h2>
-                        <form className="b-form">
+                        <form className="b-form blue">
                             <div className="b-form__row">
                                 <TextField fullWidth
                                     className="b-rorm__field"

@@ -7,7 +7,7 @@ import autobind from 'react-autobind'
 import PersonalInfo from './personalInfo'
 import CreatePost from './createPost'
 import MyPosts from './myPosts'
-import Refferals from './referrals'
+import Referrals from './referrals'
 
 function a11yProps(index) {
     return {
@@ -66,7 +66,7 @@ export default class Personal extends React.Component {
                         hidden={this.state.value !== 3}
                         id={`simple-tabpanel-3`}
                         aria-labelledby={`simple-tab-3`} >
-                        <Refferals/>
+                        <Referrals/>
                     </div>
                 </div>
             </div>

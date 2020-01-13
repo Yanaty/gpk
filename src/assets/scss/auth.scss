@@ -44,16 +44,19 @@
     &__field {
         color: $base-white;
     }
-    .MuiFormLabel-root,
-    .MuiFormLabel-root.Mui-focused,
-    .MuiInputBase-root {
-        color: $base-white;
+    &.blue {
+        .MuiFormLabel-root,
+        .MuiFormLabel-root.Mui-focused,
+        .MuiInputBase-root {
+            color: $base-white;
+        }
+        .MuiOutlinedInput-notchedOutline,
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+        .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+            border-color: $border-white;
+        }
     }
-    .MuiOutlinedInput-notchedOutline,
-    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
-    .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-        border-color: $border-white;
-    }
+    
     .b-checkbox {
         display: none;
         &:checked~.b-label:before {

@@ -1,11 +1,10 @@
 import React from 'react'
+import Feeds from '../feed/list'
 
-export default class Personal extends React.Component {
+export default class MyPosts extends React.Component {
     render() {
         return (
-            <div className="b-main">
-                La la la la create post
-            </div>
+            <Feeds/>
         )
     }
 }
