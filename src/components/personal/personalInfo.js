@@ -20,7 +20,7 @@ export default class Personal extends React.Component {
             <div className="b-personal-info">
                 <h3>Персональные данные</h3>
                 <div className="b-personal__main">
-                    <Avatar alt="Avatar" src="/assets/images/avatar.png" className="b-avatar" />
+                    <Avatar alt="Avatar" src="/assets/images/avatar.png" className="b-avatar big" />
                     <div className="b-personal__top">
                         <div>
                             <div className="b-personal__fio">admin admin admin</div>

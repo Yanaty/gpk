@@ -6,6 +6,8 @@ import Reset from './components/auth/reset'
 import Terms from './components/terms'
 import Feed from './components/feed'
 import Personal from './components/personal'
+import Admin from './components/admin'
+import MyPage from './components/myPage'
 import './assets/scss/index.scss'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
@@ -22,6 +24,8 @@ function App () {
                             <Route path='/reset' component={Reset} />
                             <Route path='/terms' component={Terms} />
                             <Route path='/personal' component={Personal} />
+                            <Route path='/admin' component={Admin} />
+                            <Route path='/my-page' component={MyPage} />
                         </Switch>
                     </PerfectScrollbar>
                 </div>

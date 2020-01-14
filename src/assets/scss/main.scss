@@ -22,7 +22,7 @@ code {
   justify-content: stretch;
 }
 .b-inner {
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
 }
@@ -126,4 +126,20 @@ a {
   a {
     color: $base-white
   }
+}
+
+.b-menu {
+  &__head {
+    cursor: pointer;
+    font-size: 15px;
+  }
+}
+
+.b-green {
+  color: $green;
+}
+
+.b-avatar.big {
+  width: 120px;
+  height: 120px;
 }
