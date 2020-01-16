@@ -35,7 +35,7 @@ export default class Registration extends React.Component {
                 <div className="b-auth">
                     <div className="b-auth__inner">
                         <h2>Регистрация</h2>
-                        <form className="b-form">
+                        <form className="b-form blue">
                             <div className="b-form__row">
                                 <TextField fullWidth
                                     className="b-rorm__field"
