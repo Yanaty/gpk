@@ -8,6 +8,8 @@ import PersonalInfo from './personalInfo'
 import CreatePost from './createPost'
 import MyPosts from './myPosts'
 import Referrals from './referrals'
+import * as authSelectors from "../../store/auth/reducer";
+import {connect} from "react-redux";
 
 function a11yProps(index) {
     return {
@@ -16,7 +18,7 @@ function a11yProps(index) {
     };
 }
 
-export default class Personal extends React.Component {
+class Personal extends React.Component {
     constructor(props) {
         super(props)
 
@@ -25,6 +27,10 @@ export default class Personal extends React.Component {
         }
 
         autobind(this)
+    }
+
+    componentDidMount() {
+       // dispatch()
     }
 
     handleChange(event, newValue) {
@@ -73,3 +79,13 @@ export default class Personal extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        regError: authSelectors.getRegError(state),
+        isLogin: authSelectors.isLogin(state)
+    }
+}
+
+
+export default connect(mapStateToProps)(Personal)

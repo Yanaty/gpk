@@ -1,0 +1,40 @@
+@media (max-width: 1000px) {
+  .b-inner {
+    width: 96%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}
+
+@media (max-width: 600px) {
+  .b-footer {
+    height: 120px;
+    padding: 7px 0
+  }
+  .b-footer__list {
+    flex-wrap: wrap;
+    li {
+      width: 50%;
+      &:nth-child(even) {
+        text-align: right
+      }
+    }
+  }
+  .b-center, .b-app {
+    min-height: calc(100vh - 120px);
+  }
+  .b-center {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .b-auth {
+    width: 100%;
+  }
+  .b-auth__inner {
+    padding: 30px;
+  }
+
+  .b-form {
+    min-width: 0;
+  }
+}

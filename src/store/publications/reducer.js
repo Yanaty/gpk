@@ -5,6 +5,12 @@ export default function reduce(state = initialState, action = {}) {
         case 'PUBLICATIONS_FETCHED':
             return action.publications
         default:
-            return state;
+            return state
     }
+}
+
+// selectors
+
+export function getPublications(state) {
+    return state.publications
 }

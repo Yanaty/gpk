@@ -6,7 +6,9 @@ export function fetchPublications() {
             let publications = await APIServices.getPublicationsPage(0);
 
             console.log('publications', publications)
-            //dispatch({ type: 'ASSETS_FETCHED', Assets });
+            dispatch({ type: 'PUBLICATIONS_FETCHED', publications });
+
+            console.log('store after dispatch', getState())
             //dispatch({ type: 'SET_PAGINATION_TOKEN', PaginationToken })
 
         } catch (error) {
@@ -14,3 +16,4 @@ export function fetchPublications() {
         }
     };
 }
+

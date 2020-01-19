@@ -3,6 +3,7 @@ import Header from '../layouts/header'
 import List from './list'
 import { connect } from 'react-redux'
 import * as publicationsActions from '../../store/publications/actions'
+import * as publicationsSelectors from '../../store/publications/reducer'
 
 class Feed extends React.Component {
     constructor(props) {
@@ -10,7 +11,6 @@ class Feed extends React.Component {
     }
 
     componentDidMount() {
-        console.log('this props', publicationsActions);
         this.props.dispatch(publicationsActions.fetchPublications());
     }
 
@@ -19,7 +19,7 @@ class Feed extends React.Component {
             <div className="b-main">
                 <Header/>
                 <div className="b-inner">
-                    <List/>
+                    <List publications={this.props.publications}/>
                 </div>
             </div>
         )
@@ -27,7 +27,9 @@ class Feed extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        publications: publicationsSelectors.getPublications(state)
+    }
 }
 
 export default connect(mapStateToProps)(Feed)

@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 html, body, #root {
   height: 100%;
 }
@@ -88,9 +91,6 @@ code {
   }
 }
 
-
-
-
 a {
   color: $blue-bg;
   text-decoration: none;
@@ -144,3 +144,4 @@ a {
   width: 120px;
   height: 120px;
 }
+

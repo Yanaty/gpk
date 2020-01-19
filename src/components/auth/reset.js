@@ -12,7 +12,7 @@ export default class Reset extends React.Component {
                         <form className="b-form">
                             <div className="b-form__row">
                                 <TextField fullWidth
-                                    className="b-rorm__field"
+                                    className="b-form__field"
                                     id="email-input"
                                     label="Почта"
                                     variant="outlined"
