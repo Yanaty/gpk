@@ -9,10 +9,51 @@ export default class Personal extends React.Component {
         super(props)
 
         this.state = {
-            value: 0
+            value: 0,
+            name: 'start'
         }
 
         autobind(this)
+    }
+
+    componentDidMount() {
+        this.save()
+    }
+
+    async logout(e) {
+        e.preventDefault();
+
+        console.log('start logout')
+
+        const url = `auth/logout`;
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Cookie': document.cookie
+            }
+        })
+
+    }
+
+    async save() {
+
+        const url = `rest/v1/distributor`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Cookie': document.cookie
+            }
+        })
+
+        console.log('response', response)
+
+        const js = await response.json()
+
+        console.log('ans', js)
+
+        this.setState({name: js.name})
     }
 
     render() {
@@ -23,12 +64,12 @@ export default class Personal extends React.Component {
                     <Avatar alt="Avatar" src="/assets/images/avatar.png" className="b-avatar big" />
                     <div className="b-personal__top">
                         <div>
-                            <div className="b-personal__fio">admin admin admin</div>
+                            <div className="b-personal__fio">{this.state.name}</div>
                             <div className="b-personal__email">admin@admin.ru</div>
                         </div>
                         <div className="b-personal__referrals">
                             <span><b>Реферальный код:</b> <code>c19d21</code></span>
-                            <Button variant="contained" className="b-button b-ml20">Скопировать</Button>
+                            <Button variant="contained" className="b-button b-ml20" onClick={this.logout}>Скопировать</Button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +110,7 @@ export default class Personal extends React.Component {
                             />
                         </div>
                         <div className="b-form__row">
-                            <Button variant="contained" className="b-button b-mr20">Сохранить</Button>
+                            <Button variant="contained" className="b-button b-mr20" onClick={this.save}>Сохранить</Button>
                         </div>
                     </div>
                 </div>

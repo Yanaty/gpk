@@ -16,7 +16,7 @@ export default function reduce(state = initialState, action = {}) {
             }
 
         case 'LOGIN_SUCCESS':
-            console.log('login success');
+            //console.log('login success');
             return {
                 ...state,
                 authError: null,

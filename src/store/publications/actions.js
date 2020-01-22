@@ -5,10 +5,10 @@ export function fetchPublications() {
         try {
             let publications = await APIServices.getPublicationsPage(0);
 
-            console.log('publications', publications)
+           // console.log('publications', publications)
             dispatch({ type: 'PUBLICATIONS_FETCHED', publications });
 
-            console.log('store after dispatch', getState())
+           // console.log('store after dispatch', getState())
             //dispatch({ type: 'SET_PAGINATION_TOKEN', PaginationToken })
 
         } catch (error) {

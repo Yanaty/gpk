@@ -1,4 +1,4 @@
-const initialState = {
+/*const initialState = {
     isLogin: false,
     currentUser: '',
     isAdmin: false,
@@ -53,4 +53,4 @@ export function getAuthError(state) {
 
 export function getRegError(state) {
     return state.auth.regError
-}
+}*/
