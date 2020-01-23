@@ -31,9 +31,9 @@ code {
 }
 .b-app {
   flex-grow: 1;
-  height: calc(100% - 60px);
   position: relative;
   overflow-y: auto;
+  height: 500px;
 }
 .b-footer {
   background: $footer-bg;

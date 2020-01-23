@@ -9,14 +9,14 @@ import Personal from './components/personal'
 import Admin from './components/admin'
 import MyPage from './components/myPage'
 import './assets/scss/index.scss'
-import PerfectScrollbar from 'react-perfect-scrollbar'
+import Scrollbar from 'react-scrollbars-custom'
 
 function App () {
     return (
         <BrowserRouter>
             <div className="b-root__inner">
                 <div className="b-app">
-                    <PerfectScrollbar>
+                    <Scrollbar>
                         <Switch>
                             <Route exact path='/' component={Feed} />
                             <Route path='/login' component={Login} />
@@ -27,7 +27,7 @@ function App () {
                             <Route path='/admin' component={Admin} />
                             <Route path='/my-page' component={MyPage} />
                         </Switch>
-                    </PerfectScrollbar>
+                    </Scrollbar>
                 </div>
                 <div className="b-footer">
                     <div className="b-inner">
