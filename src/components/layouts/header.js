@@ -16,17 +16,11 @@ class Header extends React.Component {
         }
     }
 
-    async handleSingOut(e) {
-        e.preventDefault();
-        try {
-            await this.props.dispatch(authActions.signOut())
-            console.log('a')
-        } catch {
-            console.log('catch')
-        }
-
-
+    handleSingOut(e) {
+        e.preventDefault()
+        this.props.dispatch(authActions.signOut())
     }
+
     render() {
         return (
             <div className="b-header">

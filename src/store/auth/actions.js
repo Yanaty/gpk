@@ -14,12 +14,10 @@ export const signIn = (credentials) => {
 
 export const signOut = () => {
     return async (dispatch, getState) => {
-        try {
-            await APIServices.logOut();
-            dispatch({ type: 'SIGNOUT_SUCCESS'})
-        } catch (err) {
-            alert('Что-то пошло не так')
-        }
+        console.log('signout')
+        document.cookie ='token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        dispatch({ type: 'SIGNOUT_SUCCESS'})
+       // dispatch(authActions.fetchPublications())
     }
 }
 

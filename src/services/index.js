@@ -6,11 +6,12 @@ const API_ENDPOINT = 'http://gpk24.garant.ru:7070/';
 
 class APIServices {
     async getPublicationsPage(page) {
-        const url = `${API_ENDPOINT}rest/publication/page/${page}`;
+        const url = `rest/publication/page/${page}`;
         //const url = `http://95.165.130.218:7070/rest/publication/page/${page}`
 
         const response = await fetch(url, {
             method: 'GET',
+            credentials: 'same-origin',
             headers: {
                 'Cookie': document.cookie
             }
@@ -75,11 +76,11 @@ class APIServices {
     }
 
     async logOut() {
-        const url = '/auth/logout'
+        const url = 'auth/logout'
         //const url = `http://95.165.130.218:7070/auth/logout`
 
         const response = await fetch(url, {
-            method: 'POST'
+            method: 'GET',
         });
 
         if (!response.ok) {

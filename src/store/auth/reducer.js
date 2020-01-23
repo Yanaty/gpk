@@ -1,5 +1,6 @@
+const isLoginBool = document.cookie.length > 0
 const initialState = {
-    isLogin: false,
+    isLogin: isLoginBool,
     currentUser: '',
     isAdmin: false,
     authError: null,
