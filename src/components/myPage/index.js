@@ -5,8 +5,11 @@ import Button from '@material-ui/core/Button'
 import View from './view'
 import Edit from './edit'
 import autobind from 'react-autobind'
+import * as userSelectors from '../../store/user/reducer'
+import * as userActions from '../../store/user/actions'
+import { connect } from 'react-redux'
 
-export default class MyPage extends React.Component {
+class MyPage extends React.Component {
 
     constructor(props) {
         super(props)
@@ -16,6 +19,11 @@ export default class MyPage extends React.Component {
         }
 
         autobind(this)
+    }
+
+    componentDidMount() {
+        console.log('this props user', this.props.user)
+        this.props.dispatch(userActions.getCurrentUser())
     }
 
     handleCloseEditMode() {
@@ -33,7 +41,7 @@ export default class MyPage extends React.Component {
                 <div className="b-inner">
                     <div className="b-mypage">
                         <Avatar alt="Avatar" src="/assets/images/avatar.png" className="b-avatar big" />
-                        {this.state.isEdit ? <Edit onCloseEditMode={this.handleCloseEditMode} /> : <View/> }
+                        {this.state.isEdit ? <Edit onCloseEditMode={this.handleCloseEditMode} user={this.props.user}/> : <View user={this.props.user}/> }
                     </div>
                     {!this.state.isEdit 
                     ? 
@@ -48,3 +56,11 @@ export default class MyPage extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: userSelectors.getCurrentUser(state)
+    }
+}
+
+export default connect(mapStateToProps)(MyPage)

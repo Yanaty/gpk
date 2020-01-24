@@ -1,56 +1,17 @@
-/*const initialState = {
-    isLogin: false,
-    currentUser: '',
-    isAdmin: false,
-    authError: null,
-    regError: null
-}
+const initialState = {}
 
 export default function reduce(state = initialState, action = {}) {
     switch (action.type) {
-        case 'LOGIN_ERROR':
-            console.log('login errror ')
+        case 'SET_CURRENT_USER':
             return {
-                ...state,
-                authError: action.error
+                ...action.user
             }
-
-        case 'LOGIN_SUCCESS':
-            console.log('login success');
-            return {
-                ...state,
-                authError: null,
-                isLogin: true
-            }
-
-        case 'SIGNOUT_SUCCESS':
-            console.log('signout success');
-            return {
-                ...state,
-                isLogin: false
-            }
-
-        case 'REGISTRATION_ERROR':
-            return {
-                ...state,
-                regError: action.error
-            };
-
         default:
             return state
     }
 }
 
 // selectors
-
-export function isLogin(state) {
-    return state.auth.isLogin
+export function getCurrentUser(state) {
+    return state.user
 }
-
-export function getAuthError(state) {
-    return state.auth.authError
-}
-
-export function getRegError(state) {
-    return state.auth.regError
-}*/

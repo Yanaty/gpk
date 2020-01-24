@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Router, Switch, Route, Link } from 'react-router-dom'
 import Login from './components/auth/login'
 import Registration from './components/auth/registration'
 import Reset from './components/auth/reset'
@@ -10,10 +10,11 @@ import Admin from './components/admin'
 import MyPage from './components/myPage'
 import './assets/scss/index.scss'
 import Scrollbar from 'react-scrollbars-custom'
+import history from './history'
 
 function App () {
     return (
-        <BrowserRouter>
+        <Router history={history}>
             <div className="b-root__inner">
                 <div className="b-app">
                     <Scrollbar>
@@ -53,7 +54,7 @@ function App () {
                     </div>
                 </div>
             </div>
-        </BrowserRouter>
+        </Router>
     )
 }
 

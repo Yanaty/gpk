@@ -2,7 +2,8 @@ import React from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import autobind from 'react-autobind'
+import autoBind from 'react-autobind'
+import history from './../../history'
 
 export default class Personal extends React.Component {
     constructor(props) {
@@ -13,10 +14,11 @@ export default class Personal extends React.Component {
             name: 'start'
         }
 
-        autobind(this)
+        autoBind(this)
     }
 
     componentDidMount() {
+        console.log('history', history.location.pathname)
         this.save()
     }
 
@@ -50,8 +52,6 @@ export default class Personal extends React.Component {
         console.log('response', response)
 
         const js = await response.json()
-
-        console.log('ans', js)
 
         this.setState({name: js.name})
     }

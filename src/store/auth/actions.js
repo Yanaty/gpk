@@ -1,10 +1,11 @@
-import APIServices from "../../services";
+import APIServices from "../../services"
+import * as publicationsActions from '../publications/actions'
+import history from '../../history' 
 
 export const signIn = (credentials) => {
     return async (dispatch, getState) => {
         try {
-            const answer = await APIServices.signIn(credentials)
-            console.log('answer', answer)
+            await APIServices.signIn(credentials)
             dispatch({ type: 'LOGIN_SUCCESS' })
         } catch (err) {
             dispatch({ type: 'LOGIN_ERROR', error: 'Неправильный email или пароль' });
@@ -14,10 +15,12 @@ export const signIn = (credentials) => {
 
 export const signOut = () => {
     return async (dispatch, getState) => {
-        console.log('signout')
         document.cookie ='token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         dispatch({ type: 'SIGNOUT_SUCCESS'})
-       // dispatch(authActions.fetchPublications())
+        if (history.location.pathname === '/') {
+            dispatch(publicationsActions.fetchPublications());
+        }
+        history.push('/')
     }
 }
 
