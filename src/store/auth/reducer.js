@@ -34,7 +34,12 @@ export default function reduce(state = initialState, action = {}) {
             return {
                 ...state,
                 regError: action.error
-            };
+            }
+
+        case "SET_ADMIN":
+            return {
+
+            }
 
         default:
             return state
@@ -53,4 +58,10 @@ export function getAuthError(state) {
 
 export function getRegError(state) {
     return state.auth.regError
+}
+
+export function isAdmin(state) {
+    if (state.user.roles) {
+        return state.user.roles.includes('ADMIN')
+    }
 }

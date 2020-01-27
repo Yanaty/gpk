@@ -4,11 +4,13 @@ import Item from './item'
 export default class List extends React.Component {
     render() {
         const {publications} = this.props
-        let rows = [];
-        //console.log('publ', publications)
+        const {distributors} = this.props
+        let rows = []
         if (Array.isArray(publications)) {
             publications.forEach((item) => {
-                rows.push(<Item item={item} key={item.id}/>);
+                const authorId = item.authorId
+                const author = distributors[authorId]
+                rows.push(<Item item={item} author={author} key={item.id}/>);
             })
         }
         return (

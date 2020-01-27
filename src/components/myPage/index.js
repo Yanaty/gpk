@@ -22,8 +22,8 @@ class MyPage extends React.Component {
     }
 
     componentDidMount() {
-        console.log('this props user', this.props.user)
-        this.props.dispatch(userActions.getCurrentUser())
+        //console.log('this props user', this.props.user)
+        //this.props.dispatch(userActions.getCurrentUser())
     }
 
     handleCloseEditMode() {

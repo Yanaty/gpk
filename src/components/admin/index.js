@@ -10,7 +10,8 @@ import Paper from '@material-ui/core/Paper'
 import { Link } from 'react-router-dom'
 import ContextMenu from '../layouts/contextMenu'
 import MenuItem from '@material-ui/core/MenuItem'
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
+import APIServices from '../../services'
 
 
 function createData(id, name, surname, phone, email, refCode) {
@@ -26,6 +27,12 @@ const rows = [
 ];
 
 export default class Admin extends React.Component {
+
+    componentDidMount() {
+        APIServices.getDistributorsListByPage(0).then(data => {
+            console.log('data', data)
+        })
+    }
     render() {
         return (
             <div className="b-main">

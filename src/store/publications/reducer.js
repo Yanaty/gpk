@@ -12,5 +12,9 @@ export default function reduce(state = initialState, action = {}) {
 // selectors
 
 export function getPublications(state) {
-    return state.publications
+    return state.publications.publications
+}
+
+export function getDistributors(state) {
+    return state.publications.distributors
 }

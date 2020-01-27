@@ -22,7 +22,8 @@ class APIServices {
         }
 
         let data = await response.json()
-        return data.publications
+
+        return data
     }
 
     async signIn(credentials) {
@@ -74,7 +75,7 @@ class APIServices {
             }
         });
 
-        const answer = await response.text()
+        const answer = await response.json()
 
         if (!response.ok) {
             throw new Error(answer)
@@ -103,6 +104,120 @@ class APIServices {
 
         return data
     }
+
+    async updateDocument(data) {
+        const url ='rest/v1/distributor/document'
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cookie': document.cookie
+            }
+        })
+
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}`)
+        }
+
+        return response
+    }
+
+    async getDistributorsListByPage(page) {
+        const url = `rest/v1/admin/distributors/page/${page}`
+
+        const response = await fetch(url, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Cookie': document.cookie
+            }
+        })
+        console.log('respnos', response)
+
+        if (!response.ok) {
+            console.log('Ошибка получения списка пользователей')
+        }
+
+        const data = await response.json()
+
+        return data
+    }
+
+    async getCurrentDistributorReferralsByPage(page) {
+        const url = `rest/v1/distributor/search/referrals/page/${page}`
+
+        const response = await fetch(url, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Cookie': document.cookie
+            }
+        })
+
+        if (!response.ok) {
+            console.log('Ошибка получения реферралов пользователя')
+        }
+
+        const data = await response.json()
+
+        return data
+    }
+
+    async getPublicationsPageByDistributorId(id, page) {
+        const url = `rest/v1/publication/distributor/${id}/page/${page}`
+
+        const response = await fetch(url, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Cookie': document.cookie
+            }
+        })
+
+        if (!response.ok) {
+            console.log('Ошибка получения реферралов пользователя')
+        }
+
+        const data = await response.json()
+
+        return data
+    }
+
+    async savePublication(data) {
+        const url ='rest/v1/publication'
+
+        const formData  = new FormData();
+
+        for(const name in data) {
+            formData.append(name, data[name]);
+        }
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            body: formData,
+            credentials: 'same-origin',
+            headers: {
+                'Cookie': document.cookie
+            }
+        })
+
+        console.log('response', response)
+
+        const answer = await response.text()
+
+        console.log('answer', answer)
+
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}`)
+        }
+
+        return response
+    }
+
+
 }
 
 export default new APIServices()

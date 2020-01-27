@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField'
 export default class View extends React.Component {
 
     render() {
+        const {name, surname, middleName} = this.props
         return (
             <div className="b-personal__top">
                 <div className="b-form personal">

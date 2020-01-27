@@ -4,6 +4,10 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import autoBind from 'react-autobind'
 import history from './../../history'
+import * as authAction from '../../store/auth/actions'
+import InputMask from 'react-input-mask'
+import APIServices from '../../services'
+import moment from 'moment'
 
 export default class Personal extends React.Component {
     constructor(props) {
@@ -11,52 +15,54 @@ export default class Personal extends React.Component {
 
         this.state = {
             value: 0,
-            name: 'start'
+            issueDate: '2020-01-01',
+            series: '',
+            unitCode: '',
+            unitIssued: '',
+            textAfterSave: 'Сохранено',
+            isShowText: false,
+            isSuccess: false
         }
 
         autoBind(this)
     }
 
     componentDidMount() {
-        console.log('history', history.location.pathname)
-        this.save()
+        this.setState((state, props) => ({
+           // TODO Сделать передачу данных о паспорте в стейт, когда будет готов бек
+        }));
     }
 
-    async logout(e) {
+    handleUserInput = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        this.setState({
+            [name] : value
+        });
+    }
+
+    handleSubmit = (e) => {
         e.preventDefault();
+        const data = {
+            issueDate: moment(this.state.issueDate).format('DD.MM.YYYY'),
+            series: this.state.series,
+            unitCode: this.state.unitCode,
+            unitIssued: this.state.unitIssued,
+        }
 
-        console.log('start logout')
-
-        const url = `auth/logout`;
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Cookie': document.cookie
-            }
-        })
-
-    }
-
-    async save() {
-
-        const url = `rest/v1/distributor`;
-
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Cookie': document.cookie
-            }
-        })
-
-        console.log('response', response)
-
-        const js = await response.json()
-
-        this.setState({name: js.name})
+        APIServices.updateDocument(data)
+            .then(answer => {
+                this.setState({isShowText: true, textAfterSave: 'Сохранено!', isSuccess: true})
+            }).catch(err => {
+                console.log('Ошибка', err)
+                this.setState({isShowText: true, textAfterSave: 'Ошибка!', isSuccess: false})
+            }).finally(() => {
+                setTimeout(() => this.setState({isShowText: false}), 2000)
+            })
     }
 
     render() {
+        const {name, middleName, surname, email, referralCode} = this.props.user
         return (
             <div className="b-personal-info">
                 <h3>Персональные данные</h3>
@@ -64,55 +70,94 @@ export default class Personal extends React.Component {
                     <Avatar alt="Avatar" src="/assets/images/avatar.png" className="b-avatar big" />
                     <div className="b-personal__top">
                         <div>
-                            <div className="b-personal__fio">{this.state.name}</div>
-                            <div className="b-personal__email">admin@admin.ru</div>
+                            <div className="b-personal__fio">{surname} {name} {middleName}</div>
+                            <div className="b-personal__email">{email}</div>
                         </div>
                         <div className="b-personal__referrals">
-                            <span><b>Реферальный код:</b> <code>c19d21</code></span>
-                            <Button variant="contained" className="b-button b-ml20" onClick={this.logout}>Скопировать</Button>
+                            <span><b>Реферальный код:</b> <code>{referralCode}</code></span>
+                            <Button variant="contained" className="b-button b-ml20">Скопировать</Button>
                         </div>
                     </div>
                 </div>
                 <hr/>
                 <div className="b-personal__passport">
                     <h3>Паспортные данные</h3>
-                    <div className="b-form personal">
-                        <div className="b-form__row">
-                            <TextField fullWidth
-                                className="b-rorm__field"
-                                id="email-input"
-                                label="Номер паспорта"
-                                variant="outlined"
-                            />
+                    <form className="b-form" onSubmit={this.handleSubmit}>
+                        <div className="b-form personal">
+                            <div className="b-form__row">
+                                <InputMask
+                                    mask="9999 999999"
+                                    name="series"
+                                    value={this.state.series}
+                                    onChange={this.handleUserInput}
+                                    className="b-form__field"
+                                    id="phone-input"
+                                    label="Серия и номер паспорта"
+                                    variant="outlined"
+                                    required
+                                >
+                                    {(inputProps) =>
+                                        <TextField fullWidth
+                                                   id="series-input"
+                                                   {...inputProps}
+                                        />
+                                    }
+                                </InputMask>
+                            </div>
+                            <div className="b-form__row">
+                                <TextField fullWidth
+                                    className="b-form__field"
+                                    id="issueDate-input"
+                                    label="Дата получения"
+                                    variant="outlined"
+                                    type="date"
+                                    name="issueDate"
+                                    format="dd/mm/yyyy"
+                                    value={this.state.issueDate}
+                                    required
+                                    onChange={this.handleUserInput}
+                                />
+                            </div>
+                            <div className="b-form__row">
+                                <InputMask
+                                    mask="999-999"
+                                    name="unitCode"
+                                    value={this.state.unitCode}
+                                    onChange={this.handleUserInput}
+                                    className="b-form__field"
+                                    id="phone-input"
+                                    label="Код подразделения"
+                                    variant="outlined"
+                                    required
+                                >
+                                    {(inputProps) =>
+                                        <TextField fullWidth
+                                                   id="unitCode-input"
+                                                   {...inputProps}
+                                        />
+                                    }
+                                </InputMask>
+                            </div>
+                            <div className="b-form__row">
+                                <TextField fullWidth
+                                    className="b-form__field"
+                                    id="unitIssued-input"
+                                    label="Подразделение выдавшее паспорт"
+                                    variant="outlined"
+                                    name="unitIssued"
+                                    required
+                                    value={this.state.unitIssued}
+                                    onChange={this.handleUserInput}
+                                />
+                            </div>
+                            <div className="b-form__row">
+                                <Button variant="contained" className="b-button b-mr20" type="submit">Сохранить</Button>
+                                {this.state.isShowText &&
+                                    <span className={this.state.isSuccess ? 'success' : 'error'}>{this.state.textAfterSave}</span>
+                                }
+                            </div>
                         </div>
-                        <div className="b-form__row">
-                            <TextField fullWidth
-                                className="b-rorm__field"
-                                id="email-input"
-                                label="Дата получения"
-                                variant="outlined"
-                            />
-                        </div>
-                        <div className="b-form__row">
-                            <TextField fullWidth
-                                className="b-rorm__field"
-                                id="email-input"
-                                label="Код подразделения"
-                                variant="outlined"
-                            />
-                        </div>
-                        <div className="b-form__row">
-                            <TextField fullWidth
-                                className="b-rorm__field"
-                                id="email-input"
-                                label="Подразделение выдавшее паспорт"
-                                variant="outlined"
-                            />
-                        </div>
-                        <div className="b-form__row">
-                            <Button variant="contained" className="b-button b-mr20" onClick={this.save}>Сохранить</Button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         )

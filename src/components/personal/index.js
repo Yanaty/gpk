@@ -8,8 +8,11 @@ import PersonalInfo from './personalInfo'
 import CreatePost from './createPost'
 import MyPosts from './myPosts'
 import Referrals from './referrals'
-import * as authSelectors from "../../store/auth/reducer";
+import * as authSelectors from "../../store/auth/reducer"
 import {connect} from "react-redux";
+import * as userSelectors from "../../store/user/reducer"
+import * as userActions from "../../store/user/actions"
+import APIServices from '../../services'
 
 function a11yProps(index) {
     return {
@@ -21,16 +24,14 @@ function a11yProps(index) {
 class Personal extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             value: 0
         }
-
         autobind(this)
     }
 
     componentDidMount() {
-       // dispatch()
+        this.props.dispatch(userActions.getCurrentUser())
     }
 
     handleChange(event, newValue) {
@@ -38,6 +39,7 @@ class Personal extends React.Component {
     }
 
     render() {
+        const {isAdmin} = this.props
         return (
             <div className="b-main">
                 <Header/>
@@ -45,35 +47,35 @@ class Personal extends React.Component {
                     <AppBar position="static" color="default">
                         <Tabs indicatorColor="primary" textColor="primary" value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
                             <Tab label="Персональные данные" {...a11yProps(0)} />
-                            <Tab label="Создание статьи" {...a11yProps(1)} />
-                            <Tab label="Мои публикации" {...a11yProps(2)} />
-                            <Tab label="Рефералы" {...a11yProps(3)} />
+                            <Tab label="Рефералы" {...a11yProps(1)} />
+                            { isAdmin && <Tab label="Создание статьи" {...a11yProps(2)} /> }
+                            { isAdmin && <Tab label="Мои публикации" {...a11yProps(3)} /> }
                         </Tabs>
                     </AppBar>
                     <div
                         hidden={this.state.value !== 0}
                         id={`simple-tabpanel-0`}
                         aria-labelledby={`simple-tab-0`} >
-                        <PersonalInfo/>
+                        <PersonalInfo user={this.props.user}/>
                     </div>
                     <div
                         hidden={this.state.value !== 1}
                         id={`simple-tabpanel-1`}
                         aria-labelledby={`simple-tab-1`} >
-                        <CreatePost/>
+                        <Referrals/>
                     </div>
-                    <div
+                    { isAdmin && <div
                         hidden={this.state.value !== 2}
                         id={`simple-tabpanel-2`}
                         aria-labelledby={`simple-tab-2`} >
-                        <MyPosts/>
-                    </div>
-                    <div
+                        <CreatePost/>
+                    </div> }
+                    { isAdmin && <div
                         hidden={this.state.value !== 3}
                         id={`simple-tabpanel-3`}
                         aria-labelledby={`simple-tab-3`} >
-                        <Referrals/>
-                    </div>
+                        <MyPosts user={this.props.user}/>
+                    </div> }
                 </div>
             </div>
         )
@@ -83,7 +85,9 @@ class Personal extends React.Component {
 const mapStateToProps = (state) => {
     return {
         regError: authSelectors.getRegError(state),
-        isLogin: authSelectors.isLogin(state)
+        isLogin: authSelectors.isLogin(state),
+        isAdmin: authSelectors.isAdmin(state),
+        user: userSelectors.getCurrentUser(state)
     }
 }
 

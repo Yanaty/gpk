@@ -5,10 +5,8 @@ export const getCurrentUser = () => {
         try {
             const user = await APIServices.getCurrentDistributor()
             dispatch({ type: 'SET_CURRENT_USER', user })
-
-            console.log('store after dispatch', getState())
         } catch (err) {
-            alert('Ошибка получения данных полбьзователя!')
+            alert('Ошибка получения данных пользователя!')
         }
     }
 }

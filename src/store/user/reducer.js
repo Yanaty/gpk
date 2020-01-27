@@ -15,3 +15,9 @@ export default function reduce(state = initialState, action = {}) {
 export function getCurrentUser(state) {
     return state.user
 }
+
+export function getCurrentUserId(state) {
+    if (state.user) {
+        return state.user.id
+    }
+}

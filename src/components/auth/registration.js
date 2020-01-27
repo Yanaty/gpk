@@ -2,11 +2,11 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Link, Redirect } from 'react-router-dom'
-import * as authAction from "../../store/auth/actions";
+import * as authAction from "../../store/auth/actions"
 import autoBind from 'react-autobind'
-import InputMask from 'react-input-mask';
-import * as authSelectors from "../../store/auth/reducer";
-import {connect} from "react-redux";
+import InputMask from 'react-input-mask'
+import * as authSelectors from "../../store/auth/reducer"
+import {connect} from "react-redux"
 
 class Registration extends React.Component {
     constructor(props) {

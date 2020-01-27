@@ -19,7 +19,7 @@ class Feed extends React.Component {
             <div className="b-main">
                 <Header/>
                 <div className="b-inner">
-                    <List publications={this.props.publications}/>
+                    <List publications={this.props.publications} distributors={this.props.distributors}/>
                 </div>
             </div>
         )
@@ -28,7 +28,8 @@ class Feed extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        publications: publicationsSelectors.getPublications(state)
+        publications: publicationsSelectors.getPublications(state),
+        distributors: publicationsSelectors.getDistributors(state)
     }
 }
 
