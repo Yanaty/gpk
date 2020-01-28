@@ -9,14 +9,12 @@ const initialState = {
 export default function reduce(state = initialState, action = {}) {
     switch (action.type) {
         case 'LOGIN_ERROR':
-            console.log('login errror ')
             return {
                 ...state,
                 authError: action.error
             }
 
         case 'LOGIN_SUCCESS':
-            //console.log('login success');
             return {
                 ...state,
                 authError: null,
@@ -24,7 +22,6 @@ export default function reduce(state = initialState, action = {}) {
             }
 
         case 'SIGNOUT_SUCCESS':
-            console.log('signout success');
             return {
                 ...state,
                 isLogin: false

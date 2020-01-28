@@ -2,6 +2,13 @@ import React from 'react'
 import Item from './item'
 
 export default class List extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            page: 0
+        }
+    }
     render() {
         const {publications} = this.props
         const {distributors} = this.props

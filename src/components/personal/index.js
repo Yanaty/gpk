@@ -12,7 +12,6 @@ import * as authSelectors from "../../store/auth/reducer"
 import {connect} from "react-redux";
 import * as userSelectors from "../../store/user/reducer"
 import * as userActions from "../../store/user/actions"
-import APIServices from '../../services'
 
 function a11yProps(index) {
     return {
@@ -52,32 +51,32 @@ class Personal extends React.Component {
                             { isAdmin && <Tab label="Мои публикации" {...a11yProps(3)} /> }
                         </Tabs>
                     </AppBar>
-                    <div
-                        hidden={this.state.value !== 0}
-                        id={`simple-tabpanel-0`}
-                        aria-labelledby={`simple-tab-0`} >
-                        <PersonalInfo user={this.props.user}/>
-                    </div>
-                    <div
-                        hidden={this.state.value !== 1}
-                        id={`simple-tabpanel-1`}
-                        aria-labelledby={`simple-tab-1`} >
-                        <Referrals/>
-                    </div>
-                    { isAdmin && <div
-                        hidden={this.state.value !== 2}
-                        id={`simple-tabpanel-2`}
-                        aria-labelledby={`simple-tab-2`} >
-                        <CreatePost/>
-                    </div> }
-                    { isAdmin && <div
-                        hidden={this.state.value !== 3}
-                        id={`simple-tabpanel-3`}
-                        aria-labelledby={`simple-tab-3`} >
-                        <MyPosts user={this.props.user}/>
-                    </div> }
                 </div>
-            </div>
+                <div className="b-inner"
+                    hidden={this.state.value !== 0}
+                    id={`simple-tabpanel-0`}
+                    aria-labelledby={`simple-tab-0`} >
+                    <PersonalInfo user={this.props.user}/>
+                </div>
+                <div className="b-inner"
+                    hidden={this.state.value !== 1}
+                    id={`simple-tabpanel-1`}
+                    aria-labelledby={`simple-tab-1`} >
+                    <Referrals/>
+                </div>
+                { isAdmin && <div className="b-inner"
+                    hidden={this.state.value !== 2}
+                    id={`simple-tabpanel-2`}
+                    aria-labelledby={`simple-tab-2`} >
+                    <CreatePost/>
+                </div> }
+                { isAdmin && <div className="b-main__inner"
+                    hidden={this.state.value !== 3}
+                    id={`simple-tabpanel-3`}
+                    aria-labelledby={`simple-tab-3`} >
+                    <MyPosts user={this.props.user}/>
+                </div> }
+            </div>  
         )
     }
 }

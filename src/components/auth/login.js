@@ -9,8 +9,10 @@ import { connect } from 'react-redux'
 
 class Login extends React.Component {
     constructor(props) {
-        super(props);
-        autoBind(this);
+        super(props)
+
+        autoBind(this)
+
         this.state = {
             user: false,
             email : '',
@@ -68,7 +70,6 @@ class Login extends React.Component {
     }
 
     handleSubmit = (e) => {
-        console.log('submit')
         e.preventDefault();
         this.props.dispatch(authAction.signIn(this.state));
         //this.props.signIn(this.state)

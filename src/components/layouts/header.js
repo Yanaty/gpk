@@ -21,7 +21,6 @@ class Header extends React.Component {
 
     componentDidMount() {
         if (_.isEmpty(this.props.user) && this.props.isLogin) {
-            console.log('boo')
             this.props.dispatch(userActions.getCurrentUser())
         }
 
@@ -33,7 +32,7 @@ class Header extends React.Component {
     }
 
     render() {
-        let name, surname, middleName = null
+        let name, middleName = null
         const { isAdmin } = this.props
         if (!_.isEmpty(this.props.user)) {
             name = this.props.user.name
@@ -48,12 +47,12 @@ class Header extends React.Component {
                             <ContextMenu>
                                 <Avatar alt="Avatar" src="/assets/images/avatar.png"/>
                                 <div className="b-menu__inner">
-                                    {
+                                    {/*
                                         isAdmin &&
                                         <MenuItem>
                                             <Link to="/admin">Админ Панель</Link>
                                         </MenuItem>
-                                    }
+                                    */}
                                     <MenuItem>
                                         <Link to="/personal">Личный кабинет</Link>
                                     </MenuItem>

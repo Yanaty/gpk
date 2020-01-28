@@ -1,8 +1,4 @@
-import axios from 'axios';
-
 const API_ENDPOINT = 'http://gpk24.garant.ru:7070/';
-
-
 
 class APIServices {
     async getPublicationsPage(page) {
@@ -18,7 +14,7 @@ class APIServices {
         })
 
         if (!response.ok) {
-            throw new Error(`Error ${response.status}`)
+            throw new Error(`Ошибка получения публикаций ${response.status}`)
         }
 
         let data = await response.json()
@@ -46,7 +42,7 @@ class APIServices {
         })
 
         if (!response.ok) {
-            throw new Error(`Error ${response.status}`)
+            throw new Error(`Ошибка входа ${response.status}`)
         }
 
 
@@ -96,7 +92,7 @@ class APIServices {
         })
 
         if (!response.ok) {
-            throw new Error(`Error ${response.status}`)
+            throw new Error(`Ошибка получения текущего пользователя ${response.status}`)
         }
 
         let data = await response.json()
@@ -119,7 +115,7 @@ class APIServices {
         })
 
         if (!response.ok) {
-            throw new Error(`Error ${response.status}`)
+            throw new Error(`Ошибка сохранения документа ${response.status}`)
         }
 
         return response
@@ -178,7 +174,7 @@ class APIServices {
         })
 
         if (!response.ok) {
-            console.log('Ошибка получения реферралов пользователя')
+            console.log('Ошибка получения публикаций пользователя')
         }
 
         const data = await response.json()
@@ -204,11 +200,7 @@ class APIServices {
             }
         })
 
-        console.log('response', response)
-
         const answer = await response.text()
-
-        console.log('answer', answer)
 
         if (!response.ok) {
             throw new Error(`Error ${response.status}`)

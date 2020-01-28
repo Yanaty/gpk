@@ -3,10 +3,10 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import {Link} from "react-router-dom";
-import moment from "moment";
-import APIServices from "../../services";
+import APIServices from "../../services"
 import autoBind from 'react-autobind'
+import history from '../../history'
+
 
 export default class Personal extends React.Component {
     constructor(props) {
@@ -16,7 +16,8 @@ export default class Personal extends React.Component {
             header: '',
             topic: '',
             description: '',
-            generalAvailability: false
+            generalAvailability: false,
+            isShowError: false
         }
 
         autoBind(this)
@@ -38,22 +39,6 @@ export default class Personal extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        /*const data = {
-            header: this.state.header,
-            topic: this.state.topic,
-            description: this.state.description,
-            generalAvailability: this.state.generalAvailability,
-        }
-        id: 5
-header: "В частности, базовый вектор развития говорит о возможностях поставленных обществом задач."
-topic: "В частности, базовый вектор развития говорит о возможностях поставленных обществом задач."
-description: "И нет сомнений, что представители современных социальных резервов, превозмогая сложившуюся непростую экономическую ситуацию, заблокированы в рамках своих собственных рациональных ограничений. А также сторонники тоталитаризма в науке освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, разоблачены. Для современного мира курс на социально-ориентированный национальный проект однозначно определяет каждого участника как способного принимать собственные решения касаемо благоприятных перспектив. Имеется спорная точка зрения, гласящая примерно следующее: тщательные исследования конкурентов являются только методом политического участия и своевременно верифицированы. С учётом сложившейся международной обстановки, реализация намеченных плановых заданий создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса глубокомысленных рассуждений. Есть над чем задуматься: представители современных социальных резервов представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть описаны максимально подробно."
-date: "2020-01-17"
-generalAvailability: false
-authorId: 1
-imagePublicationList: []
-
-        */
         const data = {
             header: this.state.header,
             topic: this.state.topic,
@@ -63,9 +48,11 @@ imagePublicationList: []
 
         APIServices.savePublication(data)
             .then(answer => {
-                console.log('ready')
+                history.push('/')
             }).catch(err => {
-                console.log('err', err)
+                this.setState({isShowError: true})
+            }).finally(() => {
+                setTimeout(() => this.setState({isShowError: false}), 2000)
             })
 
     }
@@ -105,10 +92,11 @@ imagePublicationList: []
                     <div className="b-form__row">
                         <h4>Описание</h4>
                         <ReactQuill value={this.state.description}
-                                    name="description"
                                     id="description-input"
                                     required
-                                    onChange={this.handlerDescription} />
+                                    onChange={this.handlerDescription}
+                                    
+                                    />
 
                     </div>
                    <div className="b-form__row">
@@ -117,8 +105,11 @@ imagePublicationList: []
                            <span>Общедоступная статья</span>
                        </label>
                    </div>
-                    <div className="b-form__row b-form__row_flex-jb">
+                    <div className="b-form__row">
                         <Button variant="contained" className="b-button b-mr20" type="submit">Отправить</Button>
+                        {this.state.isShowError &&
+                            <span className='error'>Ошибка!</span>
+                        }
                     </div>
                 </form>
             </div>

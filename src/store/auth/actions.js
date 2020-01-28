@@ -1,13 +1,11 @@
 import APIServices from "../../services"
 import * as publicationsActions from '../publications/actions'
-import * as userActions from '../user/actions'
 import history from '../../history' 
 
 export const signIn = (credentials) => {
     return async (dispatch, getState) => {
         try {
             const user = await APIServices.signIn(credentials)
-            console.log('user', user)
             dispatch({ type: 'LOGIN_SUCCESS' })
             dispatch({ type: 'SET_CURRENT_USER' , user})
         } catch (err) {

@@ -22,10 +22,7 @@ export default class Referrals extends React.Component {
         }
     }
     componentDidMount() {
-        const rows = []
-
         APIServices.getCurrentDistributorReferralsByPage(0).then(data => {
-            console.log('data', data)
             this.setState({refferals: data})
         })
     }
@@ -36,7 +33,7 @@ export default class Referrals extends React.Component {
             rows.push(createData(item.id, item.name, item.surname, item.phoneNumber, item.email))
         })
         return (
-            <div>
+            <div className="b-refferals__block">
                 <h3 >Рефералы</h3>
                 {rows.length === 0 ?
                     <div> Данных нет</div> :

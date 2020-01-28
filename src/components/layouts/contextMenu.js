@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import Popover from '@material-ui/core/Popover'
 
 export default function ContextMenu(props) {

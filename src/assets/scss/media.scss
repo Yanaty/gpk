@@ -1,11 +1,36 @@
-@media (max-width: 1000px) {
-  .b-inner {
+@media (max-width: 1024px) {
+  .b-personal-info,
+  .b-footer .b-inner,
+  .b-header .b-inner,
+  .b-refferals__block,
+  .b-create,
+  .b-feeds,
+  .b-terms,
+  .b-mypage,
+  .b-inner_pad {
     width: 96%;
     padding-left: 2%;
     padding-right: 2%;
   }
 }
-
+@media (max-width: 750px) {
+  .b-feeds {
+    margin: 0;
+  }
+  .b-mypage {
+    margin-top: 15px;
+  }
+  .b-feed {
+    padding: 20px;
+    h3 {
+      font-size: 25px;
+    }
+  }
+  .b-feeds__btns {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 @media (max-width: 600px) {
   .b-footer {
     height: 120px;
@@ -36,5 +61,80 @@
 
   .b-form {
     min-width: 0;
+  }
+  .b-form.personal {
+    max-width: 100%;
+  }
+  .MuiTabs-flexContainer {
+    flex-wrap: wrap;
+  }
+  .b-personal__referrals_head {
+    display: block;
+    margin-bottom: 3px;
+  }
+  .b-create {
+    margin: 15px 0;
+  }
+  
+}
+
+@media (max-width: 500px) {
+  .b-personal__top {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .b-avatar.big {
+    width: 100px;
+    height: 100px;
+  }
+  .b-avatar.big {
+    margin-left: 10px;
+  }
+  .b-personal__referrals code {
+    margin-right: 10px;
+  }
+  .b-personal__referrals .b-button {
+    margin-left: 0 !important;
+  }
+  h2 {
+    font-size: 20px
+  }
+  ul, ol {
+    padding-left: 20px;
+  }
+  .b-mypage {
+    display: block;
+    &__avatar {
+      text-align: center;
+      .b-avatar {
+        display: inline-block;
+      }
+    }
+  }
+  .b-personal__top {
+    &__view {
+      text-align: center;
+    }
+  }
+  .b-feeds {
+    padding-top: 10px;
+  }
+  .b-feed {
+    padding: 10px;
+    h3 {
+      font-size: 22px;
+    }
+    &__topic {
+      font-size: 16px;
+    }
+    &__content {
+      font-size: 14px;
+    }
+  }
+  .b-feeds__btns {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

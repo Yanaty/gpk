@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Router, Switch, Route, Link } from 'react-router-dom'
+import { Router, Switch, Route, Link } from 'react-router-dom'
 import Login from './components/auth/login'
 import Registration from './components/auth/registration'
 import Reset from './components/auth/reset'
@@ -17,7 +17,7 @@ function App () {
         <Router history={history}>
             <div className="b-root__inner">
                 <div className="b-app">
-                    <Scrollbar>
+                    <Scrollbar disableTracksWidthCompensation>
                         <Switch>
                             <Route exact path='/' component={Feed} />
                             <Route path='/login' component={Login} />
@@ -40,7 +40,7 @@ function App () {
                             </li>
                             <li className="b-footer__list__item">
                                 <span>Контакты</span><br/>
-                                <span>+79999999999</span>
+                                <span>+7 (999) 999-9999</span>
                             </li>
                             <li className="b-footer__list__item">
                                 <Link to="/terms">Политика Конфиденциальности</Link><br/>
@@ -48,7 +48,7 @@ function App () {
                             </li>
                             <li className="b-footer__list__item">
                                 <Link to="/">Обратная связь</Link><br/>
-                                <a className="b-footer__link" href="mailto:gpk@gmail.com">gpk@gmail.com</a>
+                                <a className="b-footer__link" href="mailto:info@gpk.ru">info@gpk.ru</a>
                             </li>
                         </ul>
                     </div>

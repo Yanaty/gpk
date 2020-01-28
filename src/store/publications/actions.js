@@ -1,9 +1,9 @@
 import APIServices from '../../services'
 
-export function fetchPublications() {
+export function fetchPublications(page) {
     return async(dispatch, getState) => {
         try {
-            let publications = await APIServices.getPublicationsPage(0);
+            let publications = await APIServices.getPublicationsPage(page);
             dispatch({ type: 'PUBLICATIONS_FETCHED', publications });
 
         } catch (error) {

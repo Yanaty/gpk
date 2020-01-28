@@ -6,7 +6,6 @@ import View from './view'
 import Edit from './edit'
 import autobind from 'react-autobind'
 import * as userSelectors from '../../store/user/reducer'
-import * as userActions from '../../store/user/actions'
 import { connect } from 'react-redux'
 
 class MyPage extends React.Component {
@@ -22,8 +21,6 @@ class MyPage extends React.Component {
     }
 
     componentDidMount() {
-        //console.log('this props user', this.props.user)
-        //this.props.dispatch(userActions.getCurrentUser())
     }
 
     handleCloseEditMode() {
@@ -38,14 +35,14 @@ class MyPage extends React.Component {
         return (
             <div className="b-main">
                 <Header/>
-                <div className="b-inner">
+                <div className="b-feed__inner">
                     <div className="b-mypage">
-                        <Avatar alt="Avatar" src="/assets/images/avatar.png" className="b-avatar big" />
+                        <div className="b-mypage__avatar"><Avatar alt="Avatar" src="/assets/images/avatar.png" className="b-avatar big" /></div>
                         {this.state.isEdit ? <Edit onCloseEditMode={this.handleCloseEditMode} user={this.props.user}/> : <View user={this.props.user}/> }
                     </div>
                     {!this.state.isEdit 
                     ? 
-                        <div>
+                        <div className="b-inner_pad">
                             <Button variant="contained" className="b-button" onClick={this.handleOpenEditMode}>Редактировать</Button>
                         </div>
                     :

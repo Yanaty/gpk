@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import autoBind from 'react-autobind'
-import history from './../../history'
-import * as authAction from '../../store/auth/actions'
 import InputMask from 'react-input-mask'
 import APIServices from '../../services'
 import moment from 'moment'
@@ -74,7 +72,8 @@ export default class Personal extends React.Component {
                             <div className="b-personal__email">{email}</div>
                         </div>
                         <div className="b-personal__referrals">
-                            <span><b>Реферальный код:</b> <code>{referralCode}</code></span>
+                            <span className="b-personal__referrals_head"><b>Реферальный код:</b> </span>
+                            <code>{referralCode}1111111</code>
                             <Button variant="contained" className="b-button b-ml20">Скопировать</Button>
                         </div>
                     </div>
@@ -91,7 +90,7 @@ export default class Personal extends React.Component {
                                     value={this.state.series}
                                     onChange={this.handleUserInput}
                                     className="b-form__field"
-                                    id="phone-input"
+                                    id="passport-input"
                                     label="Серия и номер паспорта"
                                     variant="outlined"
                                     required

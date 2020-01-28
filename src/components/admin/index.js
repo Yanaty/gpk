@@ -30,7 +30,7 @@ export default class Admin extends React.Component {
 
     componentDidMount() {
         APIServices.getDistributorsListByPage(0).then(data => {
-            console.log('data', data)
+            //console.log('data', data)
         })
     }
     render() {

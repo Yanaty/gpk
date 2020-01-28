@@ -96,7 +96,6 @@ class Registration extends React.Component {
        }
 
     handleSubmit = (e) => {
-        console.log('submit')
         e.preventDefault();
         this.props.dispatch(authAction.register(this.state));
         //this.props.signIn(this.state)
@@ -112,7 +111,6 @@ class Registration extends React.Component {
         const rows = []
         if (regError) {
             const regErrorArray = JSON.parse(regError)
-            console.log('regErrorArray', regErrorArray)
             regErrorArray.forEach((item, index) => {
                 rows.push(<p key={index}>{item.msg}</p>);
             });
